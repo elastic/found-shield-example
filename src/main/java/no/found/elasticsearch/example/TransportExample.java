@@ -7,7 +7,6 @@ import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
-import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
@@ -33,7 +32,7 @@ public class TransportExample {
         logger.info("Connecting to cluster: [{}] via [{}:{}] using ssl:[{}]", clusterName, host, port, enableSsl);
 
         // Build the settings for our client.
-        Settings settings = ImmutableSettings.settingsBuilder()
+        Settings settings = Settings.settingsBuilder()
             .put("transport.ping_schedule", "5s")
             //.put("transport.sniff", false)
             .put("cluster.name", clusterName)
@@ -43,7 +42,7 @@ public class TransportExample {
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
         // Only port 9343 (SSL-encrypted) is currently supported.
-        Client client = new TransportClient(settings)
+        Client client = TransportClient.builder().settings(settings).build()
             .addTransportAddress(new InetSocketTransportAddress(host, port));
 
         while(true) {
