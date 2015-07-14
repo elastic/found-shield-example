@@ -28,15 +28,18 @@ public class TransportExample {
         String hostBasedClusterName = host.split("\\.", 2)[0];
         String clusterName = System.getProperty("cluster", hostBasedClusterName);
 
-        logger.info("Connecting to cluster: [{}] via [{}:{}]", clusterName, host, port);
+        boolean enableSsl = Boolean.parseBoolean(System.getProperty("ssl", "true"));
+
+        logger.info("Connecting to cluster: [{}] via [{}:{}] using ssl:[{}]", clusterName, host, port, enableSsl);
 
         // Build the settings for our client.
         Settings settings = ImmutableSettings.settingsBuilder()
             .put("transport.ping_schedule", "5s")
             //.put("transport.sniff", false)
             .put("cluster.name", clusterName)
+            .put("shield.transport.ssl", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
-                .build();
+            .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
         // Only port 9343 (SSL-encrypted) is currently supported.
