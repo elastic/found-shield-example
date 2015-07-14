@@ -2,11 +2,11 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.found.elasticsearch</groupId>
-    <artifactId>elasticsearch-transport-module-example</artifactId>
+    <artifactId>found-shield-example</artifactId>
     <packaging>jar</packaging>
-    <description>elasticsearch-transport-module-example</description>
-    <url>https://github.com/foundit/elasticsearch-transport-module-example</url>
-    <version>0.8.8-1.4.0</version>
+    <description>found-shield-example</description>
+    <url>https://github.com/elastic/found-shield-example</url>
+    <version>1.6.0</version>
     <licenses>
         <license>
             <name>MIT</name>
@@ -14,20 +14,20 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <name>elasticsearch-transport-module-example</name>
+    <name>found-shield-example</name>
     <organization>
-        <name>Found AS</name>
-        <url>https://github.com/foundit/elasticsearch-transport-module-example</url>
+        <name>Elastic</name>
+        <url>https://github.com/elastic/found-shield-example</url>
     </organization>
     <scm>
-        <url>git@github.com:foundit/elasticsearch-transport-module-example.git</url>
-        <connection>scm:git:git@github.com:foundit/elasticsearch-transport-module-example.git</connection>
+        <url>git@github.com/elastic/found-shield-example.git</url>
+        <connection>scm:git:git@github.com/elastic/found-shield-example.git</connection>
     </scm>
     <developers>
         <developer>
             <id>nkvoll</id>
             <name>Njal Karevoll</name>
-            <url>http://www.found.no</url>
+            <url>http://www.elastic.co</url>
         </developer>
     </developers>
     <dependencies>

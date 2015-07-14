@@ -22,42 +22,26 @@ public class TransportExample {
     }
 
     public void run(String[] args) {
-        //TransportCommandLineParameters parameters = new TransportCommandLineParameters().parse(args, logger);
+        String host = System.getProperty("host");
+        int port = Integer.parseInt(System.getProperty("port", "9343"));
 
-        //logger.info("Connecting to cluster: [{}] using api key: [{}] in region [{}]", parameters.clusterId, parameters.apiKey, //parameters.region);
+        String hostBasedClusterName = host.split("\\.", 2)[0];
+        String clusterName = System.getProperty("cluster", hostBasedClusterName);
+
+        logger.info("Connecting to cluster: [{}] via [{}:{}]", clusterName, host, port);
 
         // Build the settings for our client.
         Settings settings = ImmutableSettings.settingsBuilder()
-            // Setting "transport.type" enables this module:
-            //.put("cluster.name", parameters.clusterId)
-            //.put("client.transport.ignore_cluster_name", false)
-            //.put("request.headers.foo", "this-is-my-bar")
             .put("transport.ping_schedule", "5s")
             //.put("transport.sniff", false)
-            .put("cluster.name", "c7e20854fc104683ba6a44d3f20a73b9")
+            .put("cluster.name", clusterName)
+            .put("request.headers.X-Found-Cluster", "${cluster.name}")
+                .build();
 
-            //.put("request.headers.clusterName", "c7e20854fc104683ba6a44d3f20a73b9")
-            //.put("request.headers.cluster", "c7e20854fc104683ba6a44d3f20a73b9")
-            .put("request.headers.cluster_name", "clusterName")
-            //.put("request.headers.found_cluster", "c7e20854fc104683ba6a44d3f20a73b9")
-            //.put("request.headers.x_found_cluster", "c7e20854fc104683ba6a44d3f20a73b9")
-            //.put("request.headers.X-Found-Cluster", "c7e20854fc104683ba6a44d3f20a73b9")
-            //.put("request.headers.found_cluster_name", "c7e20854fc104683ba6a44d3f20a73b9")
-
-            //.put("request.headers.apiKey", "omgfoo")
-            //.put("shield.user", "test_user:changeme")
-
-
-            .build();
-
-        // Instantiate a TransportClient and add Found Elasticsearch to the list of addresses to connect to.
+        // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
         // Only port 9343 (SSL-encrypted) is currently supported.
-        //logger.info("Using url: [{}]", parameters.clusterId + "." + parameters.region + ".aws.found.io");
-
         Client client = new TransportClient(settings)
-            //.addTransportAddress(new InetSocketTransportAddress(parameters.clusterId + "-" + parameters.region + ".foundcluster.com", 9343));
-            .addTransportAddress(new InetSocketTransportAddress("localhost", 9300));
-            //.addTransportAddress(new InetSocketTransportAddress("192.168.40.10", 19765));
+            .addTransportAddress(new InetSocketTransportAddress(host, port));
 
         while(true) {
             try {
