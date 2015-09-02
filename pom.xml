@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <description>found-shield-example</description>
     <url>https://github.com/elastic/found-shield-example</url>
-    <version>1.6.0</version>
+    <version>1.7.1</version>
     <licenses>
         <license>
             <name>MIT</name>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.1</version>
         </dependency>
         <dependency>
             <groupId>org.elasticsearch</groupId>

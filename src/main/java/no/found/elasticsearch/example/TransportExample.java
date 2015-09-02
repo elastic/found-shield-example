@@ -39,6 +39,7 @@ public class TransportExample {
             .put("cluster.name", clusterName)
             .put("shield.transport.ssl", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
+            .put("shield.user", System.getProperty("shield.user"))
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
