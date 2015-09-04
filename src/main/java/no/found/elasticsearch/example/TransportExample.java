@@ -56,6 +56,7 @@ public class TransportExample {
             .put("transport.ping_schedule", "5s")
             //.put("transport.sniff", false)
             .put("cluster.name", clusterName)
+            .put("action.bulk.compress", false)
             .put("shield.transport.ssl", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
             .put("shield.user", System.getProperty("shield.user"))
