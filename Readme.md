@@ -1,5 +1,7 @@
 # Found Shield Transport Example
 
+**For Elasticsearch <= 2.0, see the https://github.com/elastic/found-shield-example/tree/1.x branch**
+
 To run the example use ``mvn exec:java``:
 
     $ mvn compile exec:java -Dhost=YOUR_CLUSTER_ID.REGION.aws.found.io
