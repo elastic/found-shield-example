@@ -29,6 +29,8 @@ import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 public class TransportExample {
@@ -59,12 +61,18 @@ public class TransportExample {
             .put("shield.transport.ssl", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
             .put("shield.user", System.getProperty("shield.user"))
+            .put("plugin.types", "org.elasticsearch.shield.ShieldPlugin")
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
         // Only port 9343 (SSL-encrypted) is currently supported.
-        Client client = TransportClient.builder().settings(settings).build()
-            .addTransportAddress(new InetSocketTransportAddress(host, port));
+        Client client = null;
+        try {
+            client = TransportClient.builder().settings(settings).build()
+                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
+        } catch (UnknownHostException e) {
+            logger.error("Unable to get the host", e.getMessage());
+        }
 
         while(true) {
             try {
