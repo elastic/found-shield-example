@@ -69,8 +69,9 @@ public class TransportExample {
         Client client = null;
         try {
             client = TransportClient.builder()
-                    .addPlugin(ShieldPlugin.class).settings(settings)
-                    .settings(settings).build()
+                    .addPlugin(ShieldPlugin.class)
+                    .settings(settings)
+                    .build()
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
         } catch (UnknownHostException e) {
             logger.error("Unable to get the host", e.getMessage());
