@@ -16,12 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
+
 package no.found.elasticsearch.example;
+
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.logging.ESLogger;
@@ -30,13 +35,11 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.shield.ShieldPlugin;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.concurrent.TimeUnit;
-
 public class TransportExample {
 
     public ESLogger logger = ESLoggerFactory.getLogger(getClass().getCanonicalName());
+    private boolean ip6Enabled = true;
+    private boolean ip4Enabled = true;
 
     public static void main(String[] args)  {
         new TransportExample().run(args);
@@ -50,6 +53,8 @@ public class TransportExample {
         String clusterName = System.getProperty("cluster", hostBasedClusterName);
 
         boolean enableSsl = Boolean.parseBoolean(System.getProperty("ssl", "true"));
+        ip4Enabled = Boolean.parseBoolean(System.getProperty("ip4", "true"));
+        ip6Enabled = Boolean.parseBoolean(System.getProperty("ip6", "true"));
 
         logger.info("Connecting to cluster: [{}] via [{}:{}] using ssl:[{}]", clusterName, host, port, enableSsl);
 
@@ -66,13 +71,14 @@ public class TransportExample {
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
         // Only port 9343 (SSL-encrypted) is currently supported.
-        Client client = null;
+        TransportClient client = TransportClient.builder().addPlugin(ShieldPlugin.class).settings(settings).build();
         try {
-            client = TransportClient.builder()
-                    .addPlugin(ShieldPlugin.class)
-                    .settings(settings)
-                    .build()
-                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
+            for (InetAddress address : InetAddress.getAllByName(host)) {
+                if ((ip6Enabled && address instanceof Inet6Address)
+                        || (ip4Enabled && address instanceof Inet4Address)) {
+                    client.addTransportAddress(new InetSocketTransportAddress(address, port));
+                }
+            }
         } catch (UnknownHostException e) {
             logger.error("Unable to get the host", e.getMessage());
         }
