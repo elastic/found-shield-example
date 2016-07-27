@@ -38,7 +38,7 @@ import org.elasticsearch.shield.ShieldPlugin;
 public class TransportExample {
 
     public ESLogger logger = ESLoggerFactory.getLogger(getClass().getCanonicalName());
-    // Note: if enablng IPv6 then should ensure that your host and network can route it to the Cloud endpoint
+    // Note: If enabling IPv6, then you should ensure that your host and network can route it to the Cloud endpoint.
     // (eg Docker disables IPv6 routing by default) - see also the system property parsing code below.
     private boolean ip6Enabled = true;
     private boolean ip4Enabled = true;
@@ -55,7 +55,7 @@ public class TransportExample {
         String clusterName = System.getProperty("cluster", hostBasedClusterName);
 
         boolean enableSsl = Boolean.parseBoolean(System.getProperty("ssl", "true"));
-        // Note: if enablng IPv6 then should ensure that your host and network can route it to the Cloud endpoint
+        // Note: If enabling IPv6, then you should ensure that your host and network can route it to the Cloud endpoint.
         // (eg Docker disables IPv6 routing by default) - see also the initialization code at the top of this file.
         ip6Enabled = Boolean.parseBoolean(System.getProperty("ip6", "true"));
         ip4Enabled = Boolean.parseBoolean(System.getProperty("ip4", "true"));
