@@ -1,4 +1,4 @@
-# Found Shield Transport Example
+# Elastic Cloud Shield Transport Example
 
 **For Elasticsearch < 2.0, see the https://github.com/elastic/found-shield-example/tree/1.x branch**
 
