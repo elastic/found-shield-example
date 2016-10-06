@@ -23,21 +23,24 @@ import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.shield.ShieldPlugin;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.elasticsearch.xpack.XPackPlugin;
+import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 
 public class TransportExample {
 
-    public ESLogger logger = ESLoggerFactory.getLogger(getClass().getCanonicalName());
+    public Logger logger = ESLoggerFactory.getLogger(getClass().getCanonicalName());
     // Note: If enabling IPv6, then you should ensure that your host and network can route it to the Cloud endpoint.
     // (eg Docker disables IPv6 routing by default) - see also the system property parsing code below.
     private boolean ip6Enabled = true;
@@ -63,19 +66,19 @@ public class TransportExample {
         logger.info("Connecting to cluster: [{}] via [{}:{}] using ssl:[{}]", clusterName, host, port, enableSsl);
 
         // Build the settings for our client.
-        Settings settings = Settings.settingsBuilder()
-            .put("transport.ping_schedule", "5s")
-            //.put("transport.sniff", false)
+        Settings settings = Settings.builder()
+            .put("client.transport.nodes_sampler_interval", "5s")
+            .put("client.transport.sniff", false)
+            .put("transport.tcp.compress", true)
             .put("cluster.name", clusterName)
-            .put("action.bulk.compress", false)
-            .put("shield.transport.ssl", enableSsl)
+            .put("xpack.security.transport.ssl.enabled", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
-            .put("shield.user", System.getProperty("shield.user"))
+            .put("xpack.security.user", System.getProperty("xpack.security.user"))
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
         // Only port 9343 (SSL-encrypted) is currently supported.
-        TransportClient client = TransportClient.builder().addPlugin(ShieldPlugin.class).settings(settings).build();
+        TransportClient client = new PreBuiltXPackTransportClient(settings);
         try {
             for (InetAddress address : InetAddress.getAllByName(host)) {
                 if ((ip6Enabled && address instanceof Inet6Address)
