@@ -1,7 +1,15 @@
 # Elastic Cloud X-Pack Transport Example
 
-**For Elasticsearch < 5.0, see the https://github.com/elastic/found-shield-example/tree/2.x branch**
-**For Elasticsearch < 2.0, see the https://github.com/elastic/found-shield-example/tree/1.x branch**
+**Note:** This branch is intended for use with Elasticsearch 5.x, see the below table for earlier versions.
+
+| Elasticsearch version  | Branch                                                                |
+|------------------------|-----------------------------------------------------------------------|
+| 5.x                    | [master](https://github.com/elastic/found-shield-example/tree/master) |
+| 2.x                    | [2.x](https://github.com/elastic/found-shield-example/tree/2.x)       |
+| 1.x                    | [1.x](https://github.com/elastic/found-shield-example/tree/1.x)       |
+
+
+## Running
 
 To run the example use ``mvn exec:java``:
 
@@ -9,4 +17,7 @@ To run the example use ``mvn exec:java``:
 
 Replace `YOUR_CLUSTER_ID` with your cluster id and `REGION` with the region the cluster is started in.
 
-_(Note: by default, if IPv4 and IPv6 are both enabled then it is undetermined which will be used. The system properties `-Dipv4=true|false` and `-Dipv6=true|false` can be used to turn them on/off explicitly. If they are enabled then the network/host should support routing to the Cloud endpoint, eg this is not the case within Docker containers by default)._
+
+## IPv4 / IPv6
+
+By default, if IPv4 and IPv6 are both enabled then it is undetermined which will be used. The system properties `-Dipv4=true|false` and `-Dipv6=true|false` can be used to turn them on/off explicitly. If they are enabled then the network/host should support routing to the Cloud endpoint, e.g. this is not the case within Docker containers by default).
