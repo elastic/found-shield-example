@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>no.found.elasticsearch</groupId>
-    <artifactId>found-shield-example</artifactId>
+    <groupId>org.elasticsearch.cloud</groupId>
+    <artifactId>transport-example</artifactId>
     <packaging>jar</packaging>
-    <description>found-shield-example</description>
+    <description>cloud-transport-example</description>
     <url>https://github.com/elastic/found-shield-example</url>
     <version>5.0.0-SNAPSHOT</version>
     <licenses>
@@ -74,7 +74,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>no.found.elasticsearch.example.TransportExample</mainClass>
+                    <mainClass>org.elasticsearch.cloud.transport.example.TransportExample</mainClass>
                 </configuration>
             </plugin>
         </plugins>

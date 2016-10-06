@@ -17,13 +17,12 @@
  * under the License.
  */
 
-package no.found.elasticsearch.example;
+package org.elasticsearch.cloud.transport.example;
 
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import org.elasticsearch.action.ActionFuture;
@@ -34,8 +33,6 @@ import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
 import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.elasticsearch.transport.client.PreBuiltTransportClient;
-import org.elasticsearch.xpack.XPackPlugin;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 
 public class TransportExample {
