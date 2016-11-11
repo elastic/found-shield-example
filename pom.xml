@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>no.found.elasticsearch</groupId>
-    <artifactId>found-shield-example</artifactId>
+    <groupId>org.elasticsearch.cloud</groupId>
+    <artifactId>transport-example</artifactId>
     <packaging>jar</packaging>
-    <description>found-shield-example</description>
+    <description>cloud-transport-example</description>
     <url>https://github.com/elastic/found-shield-example</url>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>5.0.0</version>
     <licenses>
         <license>
             <name>MIT</name>
@@ -32,44 +32,34 @@
     </developers>
     <dependencies>
         <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>2.1.0</version>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>x-pack-transport</artifactId>
+            <version>5.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.elasticsearch.plugin</groupId>
-            <artifactId>shield</artifactId>
-            <version>2.1.0</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.6.2</version>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.13</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.6.2</version>
         </dependency>
     </dependencies>
     <repositories>
-          <!-- add the elasticsearch repo -->
+          <!-- add the elastic repo -->
           <repository>
-             <id>elasticsearch-releases</id>
-             <url>http://maven.elasticsearch.org/releases</url>
-             <releases>
-                <enabled>true</enabled>
-             </releases>
-             <snapshots>
-                <enabled>false</enabled>
-             </snapshots>
+              <id>elastic</id>
+              <url>https://artifacts.elastic.co/maven</url>
+              <releases>
+                  <enabled>true</enabled>
+              </releases>
+              <snapshots>
+                  <enabled>false</enabled>
+              </snapshots>
           </repository>
-        <repository>
-            <id>elasticsearch-snapshots</id>
-            <url>http://maven.elasticsearch.org/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-       </repositories>
+    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -84,7 +74,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>no.found.elasticsearch.example.TransportExample</mainClass>
+                    <mainClass>org.elasticsearch.cloud.transport.example.TransportExample</mainClass>
                 </configuration>
             </plugin>
         </plugins>
