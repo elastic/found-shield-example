@@ -74,7 +74,7 @@ public class TransportExample {
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
-        // Only port 9343 (SSL-encrypted) is currently supported.
+        // Only port 9343 (SSL-encrypted) is currently supported. The use of Shield is required.
         TransportClient client = TransportClient.builder().addPlugin(ShieldPlugin.class).settings(settings).build();
         try {
             for (InetAddress address : InetAddress.getAllByName(host)) {
