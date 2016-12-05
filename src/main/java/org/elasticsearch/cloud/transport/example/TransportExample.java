@@ -49,7 +49,7 @@ public class TransportExample {
 
     public void run(String[] args) {
         String host = System.getProperty("host");
-        int port = Integer.parseInt(System.getProperty("port", "9243"));
+        int port = Integer.parseInt(System.getProperty("port", "9343"));
 
         String hostBasedClusterName = host.split("\\.", 2)[0];
         String clusterName = System.getProperty("cluster", hostBasedClusterName);
