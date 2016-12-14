@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <description>cloud-transport-example</description>
     <url>https://github.com/elastic/found-shield-example</url>
-    <version>5.0.2</version>
+    <version>5.1.1</version>
     <licenses>
         <license>
             <name>MIT</name>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>x-pack-transport</artifactId>
-            <version>5.0.2</version>
+            <version>5.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
