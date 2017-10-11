@@ -19,21 +19,21 @@
 
 package org.elasticsearch.cloud.transport.example;
 
-import java.net.Inet4Address;
-import java.net.Inet6Address;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.concurrent.TimeUnit;
-
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
-import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
+
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
 public class TransportExample {
 
@@ -60,6 +60,9 @@ public class TransportExample {
         ip6Enabled = Boolean.parseBoolean(System.getProperty("ip6", "true"));
         ip4Enabled = Boolean.parseBoolean(System.getProperty("ip4", "true"));
 
+        // For testing in dev environments, similar to `curl -k` option
+        boolean insecure = Boolean.parseBoolean(System.getProperty("insecure", "false"));
+
         logger.info("Connecting to cluster: [{}] via [{}:{}] using ssl:[{}]", clusterName, host, port, enableSsl);
 
         // Build the settings for our client.
@@ -71,6 +74,7 @@ public class TransportExample {
             .put("xpack.security.transport.ssl.enabled", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
             .put("xpack.security.user", System.getProperty("xpack.security.user"))
+            .put("xpack.security.transport.ssl.verification_mode", insecure ? "none" : "full")
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
