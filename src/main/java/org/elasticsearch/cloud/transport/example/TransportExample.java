@@ -32,7 +32,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
 import org.apache.logging.log4j.Logger;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 
 public class TransportExample {
@@ -80,7 +80,7 @@ public class TransportExample {
             for (InetAddress address : InetAddress.getAllByName(host)) {
                 if ((ip6Enabled && address instanceof Inet6Address)
                         || (ip4Enabled && address instanceof Inet4Address)) {
-                    client.addTransportAddress(new InetSocketTransportAddress(address, port));
+                    client.addTransportAddress(new TransportAddress(address, port));
                 }
             }
         } catch (UnknownHostException e) {
