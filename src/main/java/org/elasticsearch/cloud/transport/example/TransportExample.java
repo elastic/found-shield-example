@@ -26,7 +26,7 @@ import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 
 import java.net.Inet4Address;
@@ -78,13 +78,13 @@ public class TransportExample {
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
-        // Only port 9343 (SSL-encrypted) is currently supported. The use of X-Pack security features (formerly Shield) is required.
+        // Only port 9343 (SSL-encrypted) is currently supported. The use of x-pack security features is required.
         TransportClient client = new PreBuiltXPackTransportClient(settings);
         try {
             for (InetAddress address : InetAddress.getAllByName(host)) {
                 if ((ip6Enabled && address instanceof Inet6Address)
                         || (ip4Enabled && address instanceof Inet4Address)) {
-                    client.addTransportAddress(new InetSocketTransportAddress(address, port));
+                    client.addTransportAddress(new TransportAddress(address, port));
                 }
             }
         } catch (UnknownHostException e) {

@@ -1,12 +1,13 @@
 # Elastic Cloud X-Pack Transport Example
 
-**Note:** This branch is intended for use with Elasticsearch 5.x, see the below table for earlier versions.
+**Note:** This branch is intended for use with Elasticsearch 6.x, see the below table for earlier versions.
 
-| Elasticsearch version  | Branch                                                                |
-|------------------------|-----------------------------------------------------------------------|
-| 5.x                    | [master](https://github.com/elastic/found-shield-example/tree/master) |
-| 2.x                    | [2.x](https://github.com/elastic/found-shield-example/tree/2.x)       |
-| 1.x                    | [1.x](https://github.com/elastic/found-shield-example/tree/1.x)       |
+| Elasticsearch version | Branch                                                                |
+|-----------------------|-----------------------------------------------------------------------|
+|                   6.x | [master](https://github.com/elastic/found-shield-example/tree/master) |
+|                   5.x | [5.x](https://github.com/elastic/found-shield-example/tree/5.x)       |
+|                   2.x | [2.x](https://github.com/elastic/found-shield-example/tree/2.x)       |
+|                   1.x | [1.x](https://github.com/elastic/found-shield-example/tree/1.x)       |
 
 
 ## Running
