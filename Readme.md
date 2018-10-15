@@ -1,6 +1,6 @@
 # Elastic Cloud X-Pack Transport Example
 
-**Note:** The Elasticsearch transport client is not supported at this point for accessing 6.0 Elasticsearch clusters managed by Elastic Cloud. We are working on bringing back support for this, but we highly recommend for users to move to the [high level Java REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html).
+**Note:** The Elasticsearch transport client is officially [deprecated](https://www.elastic.co/guide/en/elasticsearch/client/java-api/master/transport-client.html) in `7.0.0` and we highly recommend for users to move to the [high level Java REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html).
 
 | Elasticsearch version | Branch                                                                |
 |-----------------------|-----------------------------------------------------------------------|
