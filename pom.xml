@@ -51,7 +51,7 @@
           <!-- add the elasticsearch repo -->
           <repository>
              <id>elasticsearch-releases</id>
-             <url>http://maven.elasticsearch.org/releases</url>
+             <url>https://artifacts.elastic.co/maven</url>
              <releases>
                 <enabled>true</enabled>
              </releases>
