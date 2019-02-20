@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.elasticsearch.plugin</groupId>
             <artifactId>shield</artifactId>
-            <version>2.1.0</version>
+            <version>2.2.2</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -51,7 +51,7 @@
           <!-- add the elasticsearch repo -->
           <repository>
              <id>elasticsearch-releases</id>
-             <url>http://maven.elasticsearch.org/releases</url>
+             <url>https://artifacts.elastic.co/maven</url>
              <releases>
                 <enabled>true</enabled>
              </releases>
@@ -59,16 +59,6 @@
                 <enabled>false</enabled>
              </snapshots>
           </repository>
-        <repository>
-            <id>elasticsearch-snapshots</id>
-            <url>http://maven.elasticsearch.org/snapshots</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
        </repositories>
     <build>
         <plugins>
