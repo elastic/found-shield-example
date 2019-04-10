@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <description>cloud-transport-example</description>
     <url>https://github.com/elastic/found-shield-example</url>
-    <version>6.4.2</version>
+    <version>6.7.1</version>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
