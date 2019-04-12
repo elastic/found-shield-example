@@ -4,10 +4,10 @@
 
 | Elasticsearch version | Branch                                                                |
 |-----------------------|-----------------------------------------------------------------------|
-|                   6.x | [master](https://github.com/elastic/found-shield-example/tree/master) |
+|                   7.x | [master](https://github.com/elastic/found-shield-example/tree/master) |
+|                   6.x | [6.x](https://github.com/elastic/found-shield-example/tree/6.x)       |
 |                   5.x | [5.x](https://github.com/elastic/found-shield-example/tree/5.x)       |
 |                   2.x | [2.x](https://github.com/elastic/found-shield-example/tree/2.x)       |
-|                   1.x | [1.x](https://github.com/elastic/found-shield-example/tree/1.x)       |
 
 
 ## Running
